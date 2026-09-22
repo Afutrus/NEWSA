@@ -1414,13 +1414,18 @@ document
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const activitySamples = [
-                { user: "ohandi", method: "Dana", nominal: "1.240.000", chip: "20B" },
-                { user: "RizkyGamer", method: "OVO", nominal: "620.000", chip: "10B" },
-                { user: "andika_01", method: "BCA", nominal: "310.000", chip: "5B" },
-                { user: "shadowX", method: "GoPay", nominal: "496.000", chip: "8B" },
-                { user: "ZakyPro", method: "BRI", nominal: "1.860.000", chip: "30B" }
-            ];
+const sampleActivities = [
+    { user: "ohandi", method: "Dana", nominal: "62.000", chip: "1B" },
+    { user: "RizkyGamer", method: "OVO", nominal: "124.000", chip: "2B" },
+    { user: "andika_01", method: "BCA", nominal: "186.000", chip: "3B" },
+    { user: "shadowX", method: "GoPay", nominal: "248.000", chip: "4B" },
+    { user: "ZakyPro", method: "BRI", nominal: "310.000", chip: "5B" },
+    { user: "ahmad", method: "Dana", nominal: "372.000", chip: "6B" },
+    { user: "sultanboss", method: "OVO", nominal: "434.000", chip: "7B" },
+    { user: "dimas", method: "BCA", nominal: "496.000", chip: "8B" },
+    { user: "Rizky", method: "GoPay", nominal: "558.000", chip: "9B" },
+    { user: "luffy", method: "BRI", nominal: "620.000", chip: "10B" }
+];
 
             function createActivityNotification() {
                 const container = document.getElementById("toast-container");
