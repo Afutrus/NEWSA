@@ -12,57 +12,7 @@
 
     <title>Informasi Pencairan - Neo Party</title>
 
-    <script src="https://cdn.tailwindcss.com">
-        const sampleActivities = [
-            { user: "ohandi", method: "Dana", nominal: "1.240.000", chip: "20B" },
-            { user: "RizkyGamer", method: "OVO", nominal: "620.000", chip: "10B" },
-            { user: "andika_01", method: "BCA", nominal: "310.000", chip: "5B" },
-            { user: "shadowX", method: "GoPay", nominal: "496.000", chip: "8B" },
-            { user: "ZakyPro", method: "BRI", nominal: "1.860.000", chip: "30B" }
-        ];
-
-        function createActivityNotification() {
-            const item = sampleActivities[
-                Math.floor(Math.random() * sampleActivities.length)
-            ];
-
-            const toast = document.createElement("div");
-            toast.className = "toast-notif";
-
-            toast.innerHTML = `
-                <div class="toast-icon">
-                    <img src="neo.jpg" alt="Neo Party">
-                </div>
-                <div>
-                    <div class="toast-title">AKTIVITAS TERBARU</div>
-                    <div class="toast-user">${item.user}</div>
-                    <div class="toast-desc">
-                        ${item.method} - Rp ${item.nominal} - ${item.chip}
-                    </div>
-                </div>
-            `;
-
-            document
-                .getElementById("toast-container")
-                .appendChild(toast);
-
-            requestAnimationFrame(() => {
-                toast.classList.add("show");
-            });
-
-            setTimeout(() => {
-                toast.classList.remove("show");
-
-                setTimeout(() => {
-                    toast.remove();
-                }, 550);
-            }, 4000);
-        }
-
-        setTimeout(createActivityNotification, 1500);
-        setInterval(createActivityNotification, 7000);
-
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
 
     <style>
@@ -1084,7 +1034,63 @@
 
 
     <div id="toast-container" class="toast-container"></div>
+    <script>
 
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const sampleActivities = [
+                { user: "ohandi", method: "Dana", nominal: "1.240.000", chip: "20B" },
+                { user: "RizkyGamer", method: "OVO", nominal: "620.000", chip: "10B" },
+                { user: "andika_01", method: "BCA", nominal: "310.000", chip: "5B" },
+                { user: "shadowX", method: "GoPay", nominal: "496.000", chip: "8B" },
+                { user: "ZakyPro", method: "BRI", nominal: "1.860.000", chip: "30B" }
+            ];
+
+            function createActivityNotification() {
+                const container = document.getElementById("toast-container");
+                if (!container) return;
+
+                const item = sampleActivities[
+                    Math.floor(Math.random() * sampleActivities.length)
+                ];
+
+                const toast = document.createElement("div");
+                toast.className = "toast-notif";
+
+                toast.innerHTML = `
+                    <div class="toast-icon">
+                        <img src="neo.jpg" alt="Neo Party">
+                    </div>
+                    <div>
+                        <div class="toast-title">AKTIVITAS TERBARU</div>
+                        <div class="toast-user">${item.user}</div>
+                        <div class="toast-desc">
+                            ${item.method} - Rp ${item.nominal} - ${item.chip}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(toast);
+
+                requestAnimationFrame(function () {
+                    toast.classList.add("show");
+                });
+
+                setTimeout(function () {
+                    toast.classList.remove("show");
+
+                    setTimeout(function () {
+                        if (toast.parentNode) {
+                            toast.remove();
+                        }
+                    }, 550);
+                }, 4000);
+            }
+
+            setTimeout(createActivityNotification, 1500);
+            setInterval(createActivityNotification, 7000);
+        });
+    </script>
 </body>
 
 </html>
