@@ -12,7 +12,57 @@
 
     <title>Informasi Pencairan - Neo Party</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+        const sampleActivities = [
+            { user: "ohandi", method: "Dana", nominal: "1.240.000", chip: "20B" },
+            { user: "RizkyGamer", method: "OVO", nominal: "620.000", chip: "10B" },
+            { user: "andika_01", method: "BCA", nominal: "310.000", chip: "5B" },
+            { user: "shadowX", method: "GoPay", nominal: "496.000", chip: "8B" },
+            { user: "ZakyPro", method: "BRI", nominal: "1.860.000", chip: "30B" }
+        ];
+
+        function createActivityNotification() {
+            const item = sampleActivities[
+                Math.floor(Math.random() * sampleActivities.length)
+            ];
+
+            const toast = document.createElement("div");
+            toast.className = "toast-notif";
+
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <img src="neo.jpg" alt="Neo Party">
+                </div>
+                <div>
+                    <div class="toast-title">AKTIVITAS TERBARU</div>
+                    <div class="toast-user">${item.user}</div>
+                    <div class="toast-desc">
+                        ${item.method} - Rp ${item.nominal} - ${item.chip}
+                    </div>
+                </div>
+            `;
+
+            document
+                .getElementById("toast-container")
+                .appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.add("show");
+            });
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+
+                setTimeout(() => {
+                    toast.remove();
+                }, 550);
+            }, 4000);
+        }
+
+        setTimeout(createActivityNotification, 1500);
+        setInterval(createActivityNotification, 7000);
+
+    </script>
 
 
     <style>
@@ -435,6 +485,82 @@
                 font-size: 20px;
             }
 
+        }
+
+    
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2147483647;
+            width: min(330px, calc(100vw - 40px));
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        .toast-notif {
+            width: 100%;
+            background: rgba(10, 15, 25, 0.96);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transform: translateX(-120%);
+            opacity: 0;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast-notif.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+        }
+
+        .toast-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9px;
+        }
+
+        .toast-title {
+            color: #00e5f4;
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .toast-user {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .toast-desc {
+            color: #fff;
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 600px) {
+            .toast-container {
+                top: 14px;
+                left: 14px;
+                width: calc(100vw - 28px);
+            }
         }
 
     </style>
@@ -955,6 +1081,9 @@
 
     </script>
 
+
+
+    <div id="toast-container" class="toast-container"></div>
 
 </body>
 
